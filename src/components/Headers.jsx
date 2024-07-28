@@ -10,13 +10,13 @@ import { MovieContext, ThemContext } from "../context";
 const Headers = () => {
   const [showCart, setShowCart] = useState(false);
 
-  const { cartData } = useContext(MovieContext);
+  const { state } = useContext(MovieContext);
   const { drakMode,setDrakMode } = useContext(ThemContext);
 
-  console.log(cartData);
+  // console.log(state.cartData);
 
   const handleCardShow = () => {
-    console.log("click");
+    // console.log("click");
     setShowCart(true);
   };
 
@@ -61,9 +61,9 @@ const Headers = () => {
                 height="24"
                 alt=""
               />
-              {cartData.length > 0 && (
+              {state.cartData.length > 0 && (
                 <span className="absolute top-[-12px] left-[28px] bg-primary text-white text-center p-[2px] w-[30px] h-[30px] rounded-full">
-                  {cartData.length}
+                  {state.cartData.length}
                 </span>
               )}
             </a>
