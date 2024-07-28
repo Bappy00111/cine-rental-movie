@@ -31,9 +31,18 @@ const MovieCard = ({ movie }) => {
 
     if (!found) {
       setCartData([...cartData, movie]);
-     
+      toast.success("🦄 Product Added!", {
+        position: "top-center",
+        autoClose: 5000,
+        theme: "light",
+      });
     } else {
-      console.log(`The movie ${movie.title} has been added alredy`);
+      toast.error("🦄 Product alredy is added!", {
+        position: "top-center",
+        autoClose: 5000,
+        theme: "light",
+        
+      });
     }
   };
   return (

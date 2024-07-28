@@ -9,10 +9,10 @@ const CardDetel = ({ onClose }) => {
   console.log(cartData);
   const handleDelet = (e, id) => {
     e.preventDefault();
-
     const filterItem = cartData.filter((item) => {
       return item.id !== id;
     });
+
     setCartData([...filterItem]);
   };
   return (
@@ -23,42 +23,43 @@ const CardDetel = ({ onClose }) => {
             Your Carts
           </h2>
           <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
-            {cartData.length === 0
-              ? <span className="text-2xl md:text-4xl font-bold">Cart is Emty Please Added Product</span>
-              : cartData.map((cart) => (
-                  <div
-                    key={cart.id}
-                    className="grid grid-cols-[1fr_auto] gap-4"
-                  >
-                    <div className="flex items-center gap-4">
-                      <img
-                        className="rounded overflow-hidden w-20 h-20"
-                        src={getImgUrl(cart.cover)}
-                        alt="cart.cover"
-                      />
-                      <div>
-                        <h3 className="text-base md:text-xl font-bold">
-                          {cart.title}
-                        </h3>
-                        <p className="max-md:text-xs text-[#575A6E]">
-                          {cart.genre}
-                        </p>
-                        <span className="max-md:text-xs">${cart.price}</span>
-                      </div>
-                    </div>
-                    <div className="flex justify-between gap-4 items-center">
-                      <button className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white">
-                        <img className="w-5 h-5" src={Delet} alt="" />
-                        <span
-                          onClick={(e) => handleDelet(e, cart.id)}
-                          className="max-md:hidden"
-                        >
-                          Remove
-                        </span>
-                      </button>
+            {cartData.length === 0 ? (
+              <span className="text-2xl md:text-4xl font-bold">
+                Cart is Emty Please Added Product
+              </span>
+            ) : (
+              cartData.map((cart) => (
+                <div key={cart.id} className="grid grid-cols-[1fr_auto] gap-4">
+                  <div className="flex items-center gap-4">
+                    <img
+                      className="rounded overflow-hidden w-20 h-20"
+                      src={getImgUrl(cart.cover)}
+                      alt="cart.cover"
+                    />
+                    <div>
+                      <h3 className="text-base md:text-xl font-bold">
+                        {cart.title}
+                      </h3>
+                      <p className="max-md:text-xs text-[#575A6E]">
+                        {cart.genre}
+                      </p>
+                      <span className="max-md:text-xs">${cart.price}</span>
                     </div>
                   </div>
-                ))}
+                  <div className="flex justify-between gap-4 items-center">
+                    <button className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white">
+                      <img className="w-5 h-5" src={Delet} alt="" />
+                      <span
+                        onClick={(e) => handleDelet(e, cart.id)}
+                        className="max-md:hidden"
+                      >
+                        Remove
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
           ;
           <div className="flex items-center justify-end gap-2">

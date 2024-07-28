@@ -1,26 +1,32 @@
 import React, { useState } from "react";
-import Headers from "./components/Headers";
-import Sidebar from "./components/Sidebar";
-import MoviesList from "./components/MoviesList";
-import Footer from "./components/Footer";
-import { MovieContext } from "./context";
-
+import { MovieContext, ThemContext } from "./context";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Page from "./components/Page";
 
 const App = () => {
-  const [cartData,setCartData] = useState([])
+  const [cartData, setCartData] = useState([]);
+  const [drakMode,setDrakMode] = useState(true)
   return (
     <>
-      <MovieContext.Provider value={{cartData,setCartData}}>
-        <Headers />
-        <main>
-          <div className="container grid lg:grid-cols-[218px_1fr] gap-[3.5rem]">
-            <Sidebar />
-            <MoviesList />
-          </div>
-        </main>
-        <Footer />
+      <MovieContext.Provider value={{ cartData, setCartData }}>
+        <ThemContext.Provider value={{drakMode,setDrakMode}}>
+          <Page />
+        </ThemContext.Provider>
       </MovieContext.Provider>
-      
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </>
   );
 };

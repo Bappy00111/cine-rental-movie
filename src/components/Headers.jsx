@@ -3,15 +3,17 @@ import logo from "../../src/assets/logo.svg";
 import ring from "../../src/assets/ring.svg";
 import shopping from "../../src/assets/shopping-cart.svg";
 import moon from "../../src/assets/icons/moon.svg";
+import sun from "../../src/assets/icons/sun.svg";
 import CardDetel from "./CardDetel";
-import { MovieContext } from "../context";
+import { MovieContext, ThemContext } from "../context";
 
 const Headers = () => {
   const [showCart, setShowCart] = useState(false);
 
   const { cartData } = useContext(MovieContext);
+  const { drakMode,setDrakMode } = useContext(ThemContext);
 
-  console.log(cartData)
+  console.log(cartData);
 
   const handleCardShow = () => {
     console.log("click");
@@ -42,8 +44,9 @@ const Headers = () => {
             <a
               className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
               href="#"
+              onClick={()=>setDrakMode(!drakMode)}
             >
-              <img src={moon} width="24" height="24" alt="" />
+              <img src={drakMode  ? sun  : moon } width="24" height="24" alt="" />
             </a>
           </li>
           <li>
@@ -58,11 +61,11 @@ const Headers = () => {
                 height="24"
                 alt=""
               />
-              {
-                cartData.length > 0 && (
-                  <span className="absolute top-[-12px] left-[28px] bg-primary text-white text-center p-[2px] w-[30px] h-[30px] rounded-full">{cartData.length}</span>
-                )
-              }
+              {cartData.length > 0 && (
+                <span className="absolute top-[-12px] left-[28px] bg-primary text-white text-center p-[2px] w-[30px] h-[30px] rounded-full">
+                  {cartData.length}
+                </span>
+              )}
             </a>
           </li>
         </ul>
